@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Blog - Post List</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .post { border-bottom: 1px solid #ddd; padding: 10px 0; margin: 10px 0; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>My Blog Posts</h1>
+    
+    {% if posts %}
+        <ul>
+        {% for post in posts %}
+            <li class="post">
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.content|truncatewords:30 }}</p>
+                <small>Created: {{ post.created_at }}</small>
+            </li>
+        {% empty %}
+            <p>No posts found.</p>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No posts available.</p>
+    {% endif %}
+    
+    <p><a href="/admin/">Admin panel</a></p>
+</body>
+</html>
